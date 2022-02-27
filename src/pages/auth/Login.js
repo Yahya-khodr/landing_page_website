@@ -2,12 +2,14 @@ import { Typography, TextField, Box, Button, Alert } from "@mui/material";
 import axios from "axios";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import CircularProgress from "@mui/material/CircularProgress";
 
 const loginApi = "http://127.0.0.1:8000/api/auth/login";
 
 const Login = () => {
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleLogin = () => {
     axios
@@ -17,6 +19,7 @@ const Login = () => {
       })
       .then((res) => {
         if (res.status == 200) {
+          setIsLoading(true);
           localStorage.setItem("token", res.data.access_token);
           window.location.pathname = "/home";
         }
@@ -30,6 +33,21 @@ const Login = () => {
   const handlePass = (e) => {
     setLoginPassword(e.target.value);
   };
+
+  if (isLoading) {
+    return (
+      <Box
+        sx={{
+          position: "absolute",
+          left: "50%",
+          top: "50%",
+          transform: "translate(-50%, -50%)",
+        }}
+      >
+        <CircularProgress />
+      </Box>
+    );
+  }
 
   return (
     <>

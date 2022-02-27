@@ -117,7 +117,7 @@ const Register = () => {
         </Box>
         <Box>
           <Typography>
-            Having an account? <Link to="/">Login</Link>
+            Already Have an account? <Link to="/">Login</Link>
           </Typography>
         </Box>
 
