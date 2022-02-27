@@ -1,6 +1,7 @@
 import { Typography, TextField, Box, Button, Alert } from "@mui/material";
 import axios from "axios";
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
 const loginApi = "http://127.0.0.1:8000/api/auth/login";
 
@@ -85,6 +86,11 @@ const Login = () => {
           >
             Login
           </Button>
+        </Box>
+        <Box>
+          <Typography>
+            Don't have an account? <Link to="/register">Register</Link>
+          </Typography>
         </Box>
 
         <Alert>All fields are required</Alert>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { TextField, Box, Button, Alert, Typography } from "@mui/material";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const regApi = "http://127.0.0.1:8000/api/auth/register";
 const Register = () => {
@@ -17,7 +18,9 @@ const Register = () => {
         password: regPass,
         password_confirmation: regConfirm,
       })
-      .then((res) => {});
+      .then((res) => {
+        console.log(res.data);
+      });
   };
 
   const handleName = (e) => {
@@ -111,6 +114,11 @@ const Register = () => {
           >
             Register
           </Button>
+        </Box>
+        <Box>
+          <Typography>
+            Having an account? <Link to="/">Login</Link>
+          </Typography>
         </Box>
 
         <Alert>All fields are required</Alert>
