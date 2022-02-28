@@ -1,16 +1,32 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { Typography, TextField, Box, Button } from "@mui/material";
 import AvatarUpload from "../components/ImageUpload/AvatarUpload";
 import Navbar from "../components/Appbar";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-const api = "http://127.0.0.1:8000/api/auth/update-profile";
-let token = localStorage.getItem("token");
 const Dashboard = () => {
+  const api = "http://127.0.0.1:8000/api/auth/update-profile";
   const [newName, setNewName] = useState("");
   const [newEmail, setNewEmail] = useState("");
   const [newPass, setNewPass] = useState("");
+  const [newPassConfi, setNewPassConfi] = useState("");
+
+  const navigate = useNavigate();
+
+  const handleNewName = (e) => {
+    setNewName(e.target.value);
+  };
+  const handleNewEmail = (e) => {
+    setNewEmail(e.target.value);
+  };
+  const handleNewPass = (e) => {
+    setNewPass(e.target.value);
+  };
+  const handleNewPassConf = (e) => {
+    setNewPassConfi(e.target.value);
+  };
 
   const handleUpdate = () => {
     axios
@@ -20,25 +36,16 @@ const Dashboard = () => {
           name: newName,
           email: newEmail,
           password: newPass,
+          password_confirmation: newPassConfi,
         },
         {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        },
+          headers: { Authorization: "Bearer " + localStorage.getItem("token") },
+        }
       )
       .then((res) => {
         console.log(res.data);
+        navigate("/home");
       });
-  };
-  const handleName = (e, setNew) => {
-    setNewName(e.target.value);
-  };
-  const handleEmail = (e, setNew) => {
-    setNewEmail(e.target.value);
-  };
-  const handlePass = (e, setNew) => {
-    setNewPass(e.target.value);
   };
 
   return (
@@ -71,7 +78,7 @@ const Dashboard = () => {
           variant="outlined"
           fullWidth
           margin="normal"
-          onChange={handleName}
+          onChange={handleNewName}
         />
         <TextField
           label="New Email Address"
@@ -82,7 +89,7 @@ const Dashboard = () => {
           variant="outlined"
           fullWidth
           margin="normal"
-          onChange={handleEmail}
+          onChange={handleNewEmail}
         />
         <TextField
           label="New Password"
@@ -93,7 +100,18 @@ const Dashboard = () => {
           variant="outlined"
           fullWidth
           margin="normal"
-          onChange={handlePass}
+          onChange={handleNewPass}
+        />
+        <TextField
+          label="Confirm New Password"
+          type="password"
+          id="confirm_password"
+          name="confirm_password"
+          required
+          variant="outlined"
+          fullWidth
+          margin="normal"
+          onChange={handleNewPassConf}
         />
         <Box textAlign={"center"}>
           <Button

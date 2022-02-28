@@ -15,6 +15,7 @@ import ContactForm from "../components/ContactForm";
 import Features from "../components/Features";
 import Footer from "../components/Footer";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import axios from "axios";
 const data = [
   { title: "Business", image: business },
   { title: "Design", image: design },
@@ -24,7 +25,10 @@ const data = [
 ];
 const theme = createTheme();
 
+const api = "http://127.0.0.1:8000/api/auth/user-profile"
+
 const Home = () => {
+  
   return (
     <>
       <ThemeProvider theme={theme}>

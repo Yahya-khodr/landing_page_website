@@ -8,8 +8,8 @@ import {
   IconButton,
 } from "@mui/material";
 import axios from "axios";
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import CircularProgress from "@mui/material/CircularProgress";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 
@@ -25,6 +25,9 @@ const Login = () => {
   const togglePassword = () => {
     setShowPass(!showPass);
   };
+  const navigate = useNavigate();
+
+ 
   const handleLogin = () => {
     axios
       .post(loginApi, {
@@ -35,7 +38,7 @@ const Login = () => {
         if (res.status == 200) {
           setIsLoading(true);
           localStorage.setItem("token", res.data.access_token);
-          window.location.pathname = "/home";
+          navigate("/home");
         }
         console.log(res.data);
       });
