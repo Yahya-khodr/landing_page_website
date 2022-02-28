@@ -1,8 +1,17 @@
-import { Typography, TextField, Box, Button, Alert } from "@mui/material";
+import {
+  Typography,
+  TextField,
+  Box,
+  Button,
+  Alert,
+  InputAdornment,
+  IconButton,
+} from "@mui/material";
 import axios from "axios";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import CircularProgress from "@mui/material/CircularProgress";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 
 const loginApi = "http://127.0.0.1:8000/api/auth/login";
 
@@ -11,6 +20,11 @@ const Login = () => {
   const [loginPassword, setLoginPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
+  const [showPass, setShowPass] = useState(false);
+
+  const togglePassword = () => {
+    setShowPass(!showPass);
+  };
   const handleLogin = () => {
     axios
       .post(loginApi, {
@@ -80,7 +94,7 @@ const Login = () => {
         />
         <TextField
           label="Password"
-          type="password"
+          type={showPass ? "text" : "password"}
           id="password"
           name="password"
           required
@@ -88,6 +102,19 @@ const Login = () => {
           fullWidth
           margin="normal"
           onChange={handlePass}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={togglePassword}
+                  edge="end"
+                >
+                  {showPass ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+            ),
+          }}
         />
         <Box textAlign={"center"}>
           <Button

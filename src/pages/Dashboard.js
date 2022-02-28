@@ -5,8 +5,6 @@ import {
   TextField,
   Box,
   Button,
-  Alert,
-  Avatar,
 } from "@mui/material";
 import AvatarUpload from "../components/ImageUpload/AvatarUpload";
 

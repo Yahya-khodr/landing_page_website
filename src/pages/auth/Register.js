@@ -1,7 +1,10 @@
 import React, { useState } from "react";
-import { TextField, Box, Button, Alert, Typography } from "@mui/material";
+import { TextField, Box, Button, Alert, Typography, InputAdornment, IconButton } from "@mui/material";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
+
+
 
 const regApi = "http://127.0.0.1:8000/api/auth/register";
 const Register = () => {
@@ -9,6 +12,12 @@ const Register = () => {
   const [regEmail, setRegEmail] = useState("");
   const [regPass, setRegPass] = useState("");
   const [regConfirm, setRegConfirm] = useState("");
+
+  const [showPass,setShowPass] = useState(false)
+
+  const togglePassword = () => {
+    setShowPass(!showPass);
+  };
 
   const handleRegister = () => {
     axios
@@ -23,6 +32,9 @@ const Register = () => {
       });
   };
 
+  // const handle = (e,set) => {
+  //   set(e.target.value);
+  // };
   const handleName = (e) => {
     setRegName(e.target.value);
   };
@@ -65,6 +77,8 @@ const Register = () => {
           fullWidth
           margin="normal"
           onChange={handleName}
+          
+          
         />
         <TextField
           label="Email Address"
@@ -76,10 +90,11 @@ const Register = () => {
           fullWidth
           margin="normal"
           onChange={handleEmail}
+          
         />
         <TextField
           label="Password"
-          type="password"
+          type={showPass ? "text" : "password"}
           id="password"
           name="password"
           required
@@ -87,6 +102,19 @@ const Register = () => {
           fullWidth
           margin="normal"
           onChange={handlePass}
+          InputProps = {{
+            endAdornment : (
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={togglePassword}
+                  edge="end"
+                >
+                  {showPass ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+            )
+          }}
         />
         <TextField
           label="Password Confirmation"
