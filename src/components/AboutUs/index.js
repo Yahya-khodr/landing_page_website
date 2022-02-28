@@ -47,7 +47,7 @@ const AboutCard = () => {
           commodi quo itaque!
         </Typography>
         <Box sx={{ my: 3, display: "flex", justifyContent: "center" }}>
-          <Avatar alt="Nishikant" sx={{ width: 200, height: 200 }} />
+          <Avatar alt="Avatar" sx={{ width: 200, height: 200 }} />
         </Box>
         <Typography align="center">
           <Fab size="small" color="black" sx={{ mx: 0.7 }}>

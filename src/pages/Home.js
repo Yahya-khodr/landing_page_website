@@ -12,6 +12,7 @@ import CarouselCard from "../components/CarouselSlider";
 import Navbar from "../components/Appbar";
 import AboutCard from "../components/AboutUs";
 import ContactForm from "../components/ContactForm";
+import Features from "../components/Features";
 const data = [
   { title: "Business", image: business },
   { title: "Design", image: design },
@@ -42,6 +43,7 @@ const Home = () => {
           </CarouselCard>
         </Box>
       </Box>
+      <Features/>
       
     </>
   );
