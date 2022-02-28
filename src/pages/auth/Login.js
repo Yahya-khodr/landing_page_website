@@ -93,6 +93,7 @@ const Login = () => {
           <Button
             variant="contained"
             type="button"
+            color="success"
             onClick={handleLogin}
             sx={{
               mt: 3,

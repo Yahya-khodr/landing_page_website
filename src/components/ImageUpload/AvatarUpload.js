@@ -1,9 +1,5 @@
-import {
-  CloudUpload as MuiCloudUpload,
-  Delete as MuiDelete,
-} from "@mui/icons-material";
+
 import { Avatar, Button as MuiButton, Typography } from "@mui/material";
-import { grey } from "@mui/material/colors";
 
 import { spacing } from "@mui/system";
 import React, { createRef, useState } from "react";

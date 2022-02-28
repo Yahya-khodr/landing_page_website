@@ -103,6 +103,7 @@ const Register = () => {
           <Button
             variant="contained"
             type="button"
+            color="success"
             onClick={handleRegister}
             sx={{
               mt: 3,
