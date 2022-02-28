@@ -7,10 +7,11 @@ import {
   Button,
 } from "@mui/material";
 import AvatarUpload from "../components/ImageUpload/AvatarUpload";
+import Navbar from "../components/Appbar";
 
 const Dashboard = () => {
   return (
-    <Box
+    <><Navbar /><Box
       component="form"
       sx={{
         margin: "2% auto",
@@ -36,10 +37,7 @@ const Dashboard = () => {
         required
         variant="outlined"
         fullWidth
-        margin="normal"
-
-        //   onChange={handleName}
-      />
+        margin="normal" />
       <TextField
         label="New Email Address"
         id="email"
@@ -48,9 +46,7 @@ const Dashboard = () => {
         required
         variant="outlined"
         fullWidth
-        margin="normal"
-        //   onChange={handleEmail}
-      />
+        margin="normal" />
       <TextField
         label="New Password"
         type="password"
@@ -59,10 +55,7 @@ const Dashboard = () => {
         required
         variant="outlined"
         fullWidth
-        margin="normal"
-
-        //   onChange={handlePass}
-      />
+        margin="normal" />
       <Box textAlign={"center"}>
         <Button
           variant="contained"
@@ -80,7 +73,7 @@ const Dashboard = () => {
           Update
         </Button>
       </Box>
-    </Box>
+    </Box></>
   );
 };
 

@@ -1,8 +1,12 @@
 import { Box, Grid, Paper, Typography } from "@mui/material";
+import Navbar from "../components/Appbar";
 import ContactForm from "../components/ContactForm";
 
 const ContactUs = () => {
   return (
+    <>
+    
+    <Navbar/>
     <Box sx={{
         margin: "2% auto",
         p: 3,
@@ -19,6 +23,7 @@ const ContactUs = () => {
         </Grid>
       
     </Box>
+    </>
   );
 };
 

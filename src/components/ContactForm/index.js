@@ -56,8 +56,8 @@ const ContactForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} sx={{ p: 5 }}>
-      <Grid container >
+    <form onSubmit={handleSubmit(onSubmit)} sx={{ p: 5 , }}>
+      <Grid container spacing={2}>
         <Grid item xs={12} md={6}>
           <Controller
             render={({ field, formState }) => (
