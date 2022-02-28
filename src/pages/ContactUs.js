@@ -1,4 +1,4 @@
-import { Box, Grid, Paper, Typography } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import Navbar from "../components/Appbar";
 import ContactForm from "../components/ContactForm";
 

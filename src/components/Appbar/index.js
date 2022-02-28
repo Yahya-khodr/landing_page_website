@@ -14,8 +14,8 @@ import MenuItem from "@mui/material/MenuItem";
 import { Link, useNavigate } from "react-router-dom";
 import { NAVBAR_ROUTE } from "../../routes/constants";
 
-const pages = ["Home", "Services", "Contact Us", "About Us"];
-const settings = ["Profile", "Logout"];
+
+
 
 const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -37,7 +37,7 @@ const Navbar = () => {
   };
   const navigate = useNavigate();
   return (
-    <AppBar position="sticky" sx={{ backgroundColor: "green" }}>
+    <AppBar  position="sticky" sx={{ backgroundColor: "#2E3B55"}}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>

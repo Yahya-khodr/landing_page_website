@@ -10,6 +10,8 @@ import music from "../assets/images/music.jpg";
 import CarouselItem from "../components/CarouselSlider/CarouselItem";
 import CarouselCard from "../components/CarouselSlider";
 import Navbar from "../components/Appbar";
+import AboutCard from "../components/AboutUs";
+import ContactForm from "../components/ContactForm";
 const data = [
   { title: "Business", image: business },
   { title: "Design", image: design },
@@ -22,16 +24,16 @@ const Home = () => {
   return (
     <>
       <Navbar />
-      <Box sx={{ height: "100vh" }}>
-        <Box sx={{ px: 4 }}>
+      <Box sx={{  }}>
+        <Box sx={{ px: 4 ,}}>
           <Typography
             align="center"
             fontSize="2em"
-            color="black"
+            color="#2e3b55"
             fontWeight="bold"
             py={2}
           >
-            Some Images
+            Image Slider
           </Typography>
           <CarouselCard>
             {data.map((item, index) => (
@@ -40,6 +42,7 @@ const Home = () => {
           </CarouselCard>
         </Box>
       </Box>
+      
     </>
   );
 };

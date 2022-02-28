@@ -1,6 +1,6 @@
 
 import { Facebook, GitHub, LinkedIn } from "@mui/icons-material";
-import { Avatar, Box, Fab, Grid, Paper, Typography } from "@mui/material";
+import { Avatar, Box, Fab, Grid, Typography } from "@mui/material";
 
 const AboutCard = () => {
   return (
