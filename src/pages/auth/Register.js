@@ -29,12 +29,11 @@ const Register = () => {
       })
       .then((res) => {
         console.log(res.data);
+        window.location.pathname = "/";
       });
   };
 
-  // const handle = (e,set) => {
-  //   set(e.target.value);
-  // };
+ 
   const handleName = (e) => {
     setRegName(e.target.value);
   };
