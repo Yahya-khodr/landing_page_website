@@ -11,6 +11,8 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
+import { Link, useNavigate } from "react-router-dom";
+import { NAVBAR_ROUTE } from "../../routes/constants";
 
 const pages = ["Home", "Services", "Contact Us", "About Us"];
 const settings = ["Profile", "Logout"];
@@ -33,12 +35,11 @@ const Navbar = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-
+  const navigate = useNavigate();
   return (
-    <AppBar position="static">
+    <AppBar position="sticky" sx={{ backgroundColor: "green" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
-          
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
@@ -68,9 +69,9 @@ const Navbar = () => {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+              {NAVBAR_ROUTE.map(({ name, path }) => (
+                <MenuItem key={name} onClick={() => navigate(path)}>
+                  <Typography textAlign="center">{name}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -84,13 +85,13 @@ const Navbar = () => {
             LOGO
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page) => (
+            {NAVBAR_ROUTE.map(({ name, path }) => (
               <Button
-                key={page}
-                onClick={handleCloseNavMenu}
+                key={name}
+                onClick={() => navigate(path)}
                 sx={{ my: 2, color: "white", display: "block" }}
               >
-                {page}
+                {name}
               </Button>
             ))}
           </Box>
@@ -117,11 +118,12 @@ const Navbar = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
+              <MenuItem key="Profile" onClick={() => navigate("/dashboard")}>
+                <Typography textAlign="center">Profile</Typography>
+              </MenuItem>
+              <MenuItem key="Logout" onClick={() => {}}>
+                <Typography textAlign="center">Logout</Typography>
+              </MenuItem>
             </Menu>
           </Box>
         </Toolbar>
