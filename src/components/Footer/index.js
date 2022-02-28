@@ -5,7 +5,7 @@ function Copyright() {
     <Typography variant="body2" color="text.secondary" align="center">
       {"Copyright © "}
       <Link color="inherit" href="https://sefactory.io/fsw/">
-        SeFactory 
+        SeFactory
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
@@ -15,7 +15,7 @@ function Copyright() {
 
 const Footer = () => {
   return (
-    <Box sx={{ bgcolor: "background.paper", p: 6 }} component="footer">
+    <Box sx={{ background: "#5770a1", pt: 8, pb: 6 }} component="footer">
       <Copyright />
     </Box>
   );

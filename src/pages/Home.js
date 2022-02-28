@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Box, Typography } from "@mui/material";
+import { Box, CssBaseline, Typography } from "@mui/material";
 
 import business from "../assets/images/business.jpg";
 import design from "../assets/images/design.jpg";
@@ -14,6 +14,7 @@ import AboutCard from "../components/AboutUs";
 import ContactForm from "../components/ContactForm";
 import Features from "../components/Features";
 import Footer from "../components/Footer";
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 const data = [
   { title: "Business", image: business },
   { title: "Design", image: design },
@@ -21,32 +22,37 @@ const data = [
   { title: "Marketing", image: marketing },
   { title: "Music", image: music },
 ];
+const theme = createTheme();
 
 const Home = () => {
   return (
     <>
-      <Navbar />
-      <Box sx={{  }}>
-        <Box sx={{ px: 4 ,}}>
-          <Typography
-            align="center"
-            fontSize="2em"
-            color="#2e3b55"
-            fontWeight="bold"
-            py={2}
-          >
-            Image Slider
-          </Typography>
-          <CarouselCard>
-            {data.map((item, index) => (
-              <CarouselItem key={index} image={item.image} />
-            ))}
-          </CarouselCard>
+      <ThemeProvider theme={theme}>
+        <CssBaseline/>
+        <Navbar />
+        <Box sx={{background: "#5770a1",
+            pt: 8,
+            pb: 6,}}>
+          <Box sx={{ px: 4 }}>
+            <Typography
+              align="center"
+              fontSize="2em"
+              color="#121721"
+              fontWeight="bold"
+              py={2}
+            >
+              Image Slider
+            </Typography>
+            <CarouselCard>
+              {data.map((item, index) => (
+                <CarouselItem key={index} image={item.image} />
+              ))}
+            </CarouselCard>
+          </Box>
         </Box>
-      </Box>
-      <Features/>
-      <Footer/>
-      
+        <Features />
+        <Footer />
+      </ThemeProvider>
     </>
   );
 };
