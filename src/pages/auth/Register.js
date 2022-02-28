@@ -1,10 +1,17 @@
 import React, { useState } from "react";
-import { TextField, Box, Button, Alert, Typography, InputAdornment, IconButton } from "@mui/material";
+import {
+  TextField,
+  Box,
+  Button,
+  Alert,
+  Typography,
+  InputAdornment,
+  IconButton,
+} from "@mui/material";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-
-
+import swal from "sweetalert";
 
 const regApi = "http://127.0.0.1:8000/api/auth/register";
 const Register = () => {
@@ -13,12 +20,12 @@ const Register = () => {
   const [regPass, setRegPass] = useState("");
   const [regConfirm, setRegConfirm] = useState("");
 
-  const [showPass,setShowPass] = useState(false)
+  const [showPass, setShowPass] = useState(false);
 
   const togglePassword = () => {
     setShowPass(!showPass);
   };
-
+  const navigate = useNavigate();
   const handleRegister = () => {
     axios
       .post(regApi, {
@@ -29,11 +36,19 @@ const Register = () => {
       })
       .then((res) => {
         console.log(res.data);
-        window.location.pathname = "/";
+        if (res.data.status) {
+          swal({
+            title: "Success!",
+            text: "Successfully registered go to Login",
+            icon: "success",
+            button: "Done!",
+          }).then(() => {
+            navigate("/");
+          });
+        }
       });
   };
 
- 
   const handleName = (e) => {
     setRegName(e.target.value);
   };
@@ -76,8 +91,6 @@ const Register = () => {
           fullWidth
           margin="normal"
           onChange={handleName}
-          
-          
         />
         <TextField
           label="Email Address"
@@ -89,7 +102,6 @@ const Register = () => {
           fullWidth
           margin="normal"
           onChange={handleEmail}
-          
         />
         <TextField
           label="Password"
@@ -101,8 +113,8 @@ const Register = () => {
           fullWidth
           margin="normal"
           onChange={handlePass}
-          InputProps = {{
-            endAdornment : (
+          InputProps={{
+            endAdornment: (
               <InputAdornment position="end">
                 <IconButton
                   aria-label="toggle password visibility"
@@ -112,7 +124,7 @@ const Register = () => {
                   {showPass ? <VisibilityOff /> : <Visibility />}
                 </IconButton>
               </InputAdornment>
-            )
+            ),
           }}
         />
         <TextField
