@@ -20,7 +20,7 @@ const Features = () => {
         fontWeight="bold"
         py={2}
       >
-        Features
+        Services
       </Typography>
       <Grid container spacing={4} align="center">
         {cards.map((card) => (

@@ -14,9 +14,6 @@ import MenuItem from "@mui/material/MenuItem";
 import { Link, useNavigate } from "react-router-dom";
 import { NAVBAR_ROUTE } from "../../routes/constants";
 
-
-
-
 const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -37,7 +34,7 @@ const Navbar = () => {
   };
   const navigate = useNavigate();
   return (
-    <AppBar  position="sticky" sx={{ backgroundColor: "#2E3B55"}}>
+    <AppBar position="sticky" sx={{ backgroundColor: "#2E3B55" }}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
@@ -76,14 +73,6 @@ const Navbar = () => {
               ))}
             </Menu>
           </Box>
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}
-          >
-            LOGO
-          </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
             {NAVBAR_ROUTE.map(({ name, path }) => (
               <Button
