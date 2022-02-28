@@ -1,10 +1,46 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { Typography, TextField, Box, Button } from "@mui/material";
 import AvatarUpload from "../components/ImageUpload/AvatarUpload";
 import Navbar from "../components/Appbar";
+import axios from "axios";
 
+const api = "http://127.0.0.1:8000/api/auth/update-profile";
+let token = localStorage.getItem("token");
 const Dashboard = () => {
+  const [newName, setNewName] = useState("");
+  const [newEmail, setNewEmail] = useState("");
+  const [newPass, setNewPass] = useState("");
+
+  const handleUpdate = () => {
+    axios
+      .post(
+        api,
+        {
+          name: newName,
+          email: newEmail,
+          password: newPass,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        },
+      )
+      .then((res) => {
+        console.log(res.data);
+      });
+  };
+  const handleName = (e, setNew) => {
+    setNewName(e.target.value);
+  };
+  const handleEmail = (e, setNew) => {
+    setNewEmail(e.target.value);
+  };
+  const handlePass = (e, setNew) => {
+    setNewPass(e.target.value);
+  };
+
   return (
     <>
       <Navbar />
@@ -23,7 +59,7 @@ const Dashboard = () => {
         <Typography
           sx={{ fontSize: "2rem", color: "green", fontWeight: "700" }}
         >
-          User Name
+          Company
         </Typography>
 
         <TextField
@@ -35,6 +71,7 @@ const Dashboard = () => {
           variant="outlined"
           fullWidth
           margin="normal"
+          onChange={handleName}
         />
         <TextField
           label="New Email Address"
@@ -45,6 +82,7 @@ const Dashboard = () => {
           variant="outlined"
           fullWidth
           margin="normal"
+          onChange={handleEmail}
         />
         <TextField
           label="New Password"
@@ -55,13 +93,14 @@ const Dashboard = () => {
           variant="outlined"
           fullWidth
           margin="normal"
+          onChange={handlePass}
         />
         <Box textAlign={"center"}>
           <Button
             variant="contained"
             type="button"
             color="success"
-            // onClick={handleLogin}
+            onClick={handleUpdate}
             sx={{
               mt: 3,
               mb: 2,
