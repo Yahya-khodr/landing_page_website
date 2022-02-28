@@ -25,7 +25,6 @@ const data = [
 ];
 const theme = createTheme();
 
-const api = "http://127.0.0.1:8000/api/auth/user-profile"
 
 const Home = () => {
   

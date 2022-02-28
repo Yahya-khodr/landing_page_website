@@ -32,6 +32,10 @@ const Navbar = () => {
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    navigate("/");
+  }
   const navigate = useNavigate();
   return (
     <AppBar position="sticky" sx={{ backgroundColor: "#2E3B55" }}>
@@ -110,7 +114,7 @@ const Navbar = () => {
               <MenuItem key="Profile" onClick={() => navigate("/dashboard")}>
                 <Typography textAlign="center">Profile</Typography>
               </MenuItem>
-              <MenuItem key="Logout" onClick={() => {}}>
+              <MenuItem key="Logout" onClick= {handleLogout}>
                 <Typography textAlign="center">Logout</Typography>
               </MenuItem>
             </Menu>
