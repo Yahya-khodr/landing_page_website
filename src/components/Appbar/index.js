@@ -12,7 +12,7 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import { Link, useNavigate } from "react-router-dom";
-import { NAVBAR_ROUTE } from "../../routes/constants";
+import { NAVBAR_ROUTE } from "../../routes/Constants";
 
 const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);

@@ -1,7 +1,4 @@
 
-
-
-
 export const HOME_ROUTE  = {
     path: '/home',
     name: 'Home'
@@ -19,8 +16,6 @@ export const ABOUT_US  = {
     path: '/about_us',
     name: 'About Us'
 }
-
-
 
 export const NAVBAR_ROUTE = [
     HOME_ROUTE,

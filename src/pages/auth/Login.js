@@ -27,7 +27,6 @@ const Login = () => {
   };
   const navigate = useNavigate();
 
-  
   const handleLogin = () => {
     axios
       .post(loginApi, {
@@ -38,7 +37,7 @@ const Login = () => {
         if (res.status == 200) {
           setIsLoading(true);
           localStorage.setItem("token", res.data.access_token);
-          navigate("/home");
+          navigate("/home", { replace: true });
         }
         console.log(res.data);
       });

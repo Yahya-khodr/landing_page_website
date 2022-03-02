@@ -21,10 +21,15 @@ const Register = () => {
   const [regConfirm, setRegConfirm] = useState("");
 
   const [showPass, setShowPass] = useState(false);
+  const [showPassConf, setShowPassConf] = useState(false);
 
   const togglePassword = () => {
     setShowPass(!showPass);
   };
+  const togglePasswordConf = () => {
+    setShowPassConf(!showPassConf);
+  };
+
   const navigate = useNavigate();
   const handleRegister = () => {
     axios
@@ -129,7 +134,7 @@ const Register = () => {
         />
         <TextField
           label="Password Confirmation"
-          type="password"
+          type={showPassConf ? "text" : "password"}
           id="password"
           name="password"
           required
@@ -137,6 +142,19 @@ const Register = () => {
           fullWidth
           margin="normal"
           onChange={handlePassConf}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={togglePasswordConf}
+                  edge="end"
+                >
+                  {showPassConf ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+            ),
+          }}
         />
         <Box textAlign={"center"}>
           <Button
