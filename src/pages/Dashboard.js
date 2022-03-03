@@ -6,6 +6,7 @@ import AvatarUpload from "../components/ImageUpload/AvatarUpload";
 import Navbar from "../components/Appbar";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import swal from "sweetalert";
 
 const Dashboard = () => {
   const api = "http://127.0.0.1:8000/api/auth/update-profile";
@@ -65,8 +66,19 @@ const Dashboard = () => {
       )
       .then((res) => {
         console.log(res.data);
-        navigate("/home");
+        
+        if(res.data.status){
+          swal({
+            title: "Success!",
+            text: "Successfully updated user info",
+            icon: "success",
+            button: "Done!",
+          }).then(() => {
+            navigate("/home");
+          });
+        }
       });
+      
   };
 
   const togglePassword = () => {
@@ -105,7 +117,7 @@ const Dashboard = () => {
           variant="outlined"
           fullWidth
           margin="normal"
-          value={userData.name}
+          defaultValue={userData.name}
           onChange={handleNewName}
           InputLabelProps={{ shrink: true }}
         />
@@ -117,7 +129,6 @@ const Dashboard = () => {
           variant="outlined"
           fullWidth
           margin="normal"
-          value={userData.email}
           defaultValue={userData.email}
           onChange={handleNewEmail}
           InputLabelProps={{ shrink: true }}

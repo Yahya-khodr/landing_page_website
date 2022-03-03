@@ -26,7 +26,11 @@ const Login = () => {
     setShowPass(!showPass);
   };
   const navigate = useNavigate();
-
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      navigate("/home");
+    }
+  }, []);
   const handleLogin = () => {
     axios
       .post(loginApi, {
