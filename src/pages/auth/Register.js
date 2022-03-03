@@ -48,7 +48,7 @@ const Register = () => {
             icon: "success",
             button: "Done!",
           }).then(() => {
-            navigate("/");
+            navigate("/login");
           });
         }
       });

@@ -28,7 +28,7 @@ const Login = () => {
   const navigate = useNavigate();
   useEffect(() => {
     if (localStorage.getItem("token")) {
-      navigate("/home");
+      navigate("/");
     }
   }, []);
   const handleLogin = () => {
@@ -41,7 +41,7 @@ const Login = () => {
         if (res.status == 200) {
           setIsLoading(true);
           localStorage.setItem("token", res.data.access_token);
-          navigate("/home", { replace: true });
+          navigate("/", { replace: true });
         }
         console.log(res.data);
       });
