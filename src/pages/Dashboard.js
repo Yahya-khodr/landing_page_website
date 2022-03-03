@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 
-import { Typography, TextField, Box, Button } from "@mui/material";
+import { Typography, TextField, Box, Button,InputAdornment, IconButton } from "@mui/material";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
 import AvatarUpload from "../components/ImageUpload/AvatarUpload";
 import Navbar from "../components/Appbar";
 import axios from "axios";
@@ -8,10 +9,15 @@ import { useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   const api = "http://127.0.0.1:8000/api/auth/update-profile";
+  const getApi = "http://127.0.0.1:8000/api/auth/user-profile";
   const [newName, setNewName] = useState("");
   const [newEmail, setNewEmail] = useState("");
   const [newPass, setNewPass] = useState("");
   const [newPassConfi, setNewPassConfi] = useState("");
+  const [userData, setUserData] = useState("");
+
+  const [showPass, setShowPass] = useState(false);
+  const [showPassConf, setShowPassConf] = useState(false);
 
   const navigate = useNavigate();
 
@@ -27,6 +33,21 @@ const Dashboard = () => {
   const handleNewPassConf = (e) => {
     setNewPassConfi(e.target.value);
   };
+  const getUser = () => {
+    axios
+      .get(getApi, {
+        headers: { Authorization: "Bearer " + localStorage.getItem("token") },
+      })
+      .then((res) => {
+        const User = res.data;
+        setUserData(User);
+        console.log(User);
+      });
+  };
+
+  useEffect(() => {
+    getUser();
+  }, []);
 
   const handleUpdate = () => {
     axios
@@ -48,6 +69,13 @@ const Dashboard = () => {
       });
   };
 
+  const togglePassword = () => {
+    setShowPass(!showPass);
+  };
+  const togglePasswordConf = () => {
+    setShowPassConf(!showPassConf);
+  };
+
   return (
     <>
       <Navbar />
@@ -66,34 +94,37 @@ const Dashboard = () => {
         <Typography
           sx={{ fontSize: "2rem", color: "green", fontWeight: "700" }}
         >
-          Company
+          {userData.name}
         </Typography>
 
         <TextField
           label="Name"
           id="name"
-          name="name"
           type="name"
           required
           variant="outlined"
           fullWidth
           margin="normal"
+          value={userData.name}
           onChange={handleNewName}
+          InputLabelProps={{ shrink: true }}
         />
         <TextField
-          label="New Email Address"
+          label="Email Address"
           id="email"
-          name="email"
           type="email"
           required
           variant="outlined"
           fullWidth
           margin="normal"
+          value={userData.email}
+          defaultValue={userData.email}
           onChange={handleNewEmail}
+          InputLabelProps={{ shrink: true }}
         />
         <TextField
           label="New Password"
-          type="password"
+          type={showPass ? "text" : "password"}
           id="password"
           name="password"
           required
@@ -101,10 +132,23 @@ const Dashboard = () => {
           fullWidth
           margin="normal"
           onChange={handleNewPass}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={togglePassword}
+                  edge="end"
+                >
+                  {showPass ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+            ),
+          }}
         />
         <TextField
           label="Confirm New Password"
-          type="password"
+          type={showPassConf ? "text" : "password"}
           id="confirm_password"
           name="confirm_password"
           required
@@ -112,6 +156,19 @@ const Dashboard = () => {
           fullWidth
           margin="normal"
           onChange={handleNewPassConf}
+          InputProps={{
+            endAdornment: (
+              <InputAdornment position="end">
+                <IconButton
+                  aria-label="toggle password visibility"
+                  onClick={togglePasswordConf}
+                  edge="end"
+                >
+                  {showPassConf ? <VisibilityOff /> : <Visibility />}
+                </IconButton>
+              </InputAdornment>
+            ),
+          }}
         />
         <Box textAlign={"center"}>
           <Button
