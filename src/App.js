@@ -9,6 +9,7 @@ import Dashboard from "./pages/Dashboard";
 import ContactUs from "./pages/ContactUs";
 import About from "./pages/about";
 import Services from "./pages/Services";
+import ProtectedRoute from "./services/ProtectedRoute";
 
 function App() {
   return (
@@ -17,7 +18,14 @@ function App() {
         <Routes>
           <Route path="/home" element={<Home />} />
           <Route path="/contact" element={<ContactUs />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route
+            path="/dashboard"
+            element={
+              <ProtectedRoute>
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
           <Route path="/about_us" element={<About />} />
           <Route path="/services" element={<Services />} />
           <Route index element={<Login />} />
