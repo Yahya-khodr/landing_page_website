@@ -35,7 +35,7 @@ const Navbar = () => {
   const handleLogout = () => {
     localStorage.removeItem("token");
     navigate("/");
-  }
+  };
   const navigate = useNavigate();
   return (
     <AppBar position="sticky" sx={{ backgroundColor: "#2E3B55" }}>
@@ -92,7 +92,7 @@ const Navbar = () => {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Avatar" src="/static/images/avatar/2.jpg" />
+                <Avatar alt="Avatar" />
               </IconButton>
             </Tooltip>
             <Menu
@@ -114,7 +114,7 @@ const Navbar = () => {
               <MenuItem key="Profile" onClick={() => navigate("/dashboard")}>
                 <Typography textAlign="center">Profile</Typography>
               </MenuItem>
-              <MenuItem key="Logout" onClick= {handleLogout}>
+              <MenuItem key="Logout" onClick={handleLogout}>
                 <Typography textAlign="center">Logout</Typography>
               </MenuItem>
             </Menu>
