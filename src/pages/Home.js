@@ -14,7 +14,7 @@ import AboutCard from "../components/AboutUs";
 import ContactForm from "../components/ContactForm";
 import Features from "../components/Features";
 import Footer from "../components/Footer";
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 import axios from "axios";
 const data = [
   { title: "Business", image: business },
@@ -25,17 +25,13 @@ const data = [
 ];
 const theme = createTheme();
 
-
 const Home = () => {
-  
   return (
     <>
       <ThemeProvider theme={theme}>
-        <CssBaseline/>
+        <CssBaseline />
         <Navbar />
-        <Box sx={{background: "#5770a1",
-            pt: 8,
-            pb: 6,}}>
+        <Box sx={{ background: "#5770a1", pt: 8, pb: 6 }}>
           <Box sx={{ px: 4 }}>
             <Typography
               align="center"
@@ -48,7 +44,11 @@ const Home = () => {
             </Typography>
             <CarouselCard>
               {data.map((item, index) => (
-                <CarouselItem key={index} image={item.image} />
+                <CarouselItem
+                  key={index}
+                  image={item.image}
+                  title={item.title}
+                />
               ))}
             </CarouselCard>
           </Box>
